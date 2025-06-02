@@ -6,7 +6,7 @@ const { verifyToken, requireTherapist, requireAuth, requireTherapistSelfAccess, 
 const { validate, createTherapistSchema, searchTherapistsSchema, updateVerificationSchema } = require('../middleware/validation');
 
 // Import controllers
-const TherapistController = require('../controllers/TherapistController');
+const TherapistController = require('../controllers/therapistController');
 
 // Public routes (called by auth service)
 router.post('/create', validate(createTherapistSchema), TherapistController.createTherapist);

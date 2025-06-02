@@ -6,7 +6,7 @@ const { verifyToken, requireTherapist } = require('../middleware/auth');
 const { validate, therapistProfileSchema, therapistSpecializationsSchema, therapistApproachesSchema } = require('../middleware/validation');
 
 // Import controllers
-const ProfileController = require('../controllers/ProfileController');
+const ProfileController = require('../controllers/profileController');
 
 // All routes require therapist authentication
 router.use(verifyToken);

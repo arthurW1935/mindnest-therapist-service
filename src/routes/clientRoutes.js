@@ -6,7 +6,7 @@ const { verifyToken, requireTherapist, requireAuth, requireClientAccess } = requ
 const { validate, clientRelationshipSchema, sessionBookingSchema, reviewSchema } = require('../middleware/validation');
 
 // Import controllers
-const ClientController = require('../controllers/ClientController');
+const ClientController = require('../controllers/clientController');
 
 // All routes require authentication
 router.use(verifyToken);

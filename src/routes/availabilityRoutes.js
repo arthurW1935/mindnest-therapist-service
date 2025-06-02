@@ -6,7 +6,7 @@ const { verifyToken, requireTherapist, requireAuth } = require('../middleware/au
 const { validate, availabilityTemplateSchema, availabilitySlotSchema, bulkAvailabilitySchema, availabilityQuerySchema } = require('../middleware/validation');
 
 // Import controllers
-const AvailabilityController = require('../controllers/AvailabilityController');
+const AvailabilityController = require('../controllers/availabilityController');
 
 // Public routes (for users to search available slots)
 router.get('/search', AvailabilityController.searchAvailableSlots);
