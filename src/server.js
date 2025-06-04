@@ -1,4 +1,4 @@
-const PROD_URL = "https://mindnest-frontend.vercel.app/"
+const PROD_URL = "https://mindnest-frontend.vercel.app"
 const LOCAL_URL = "http://localhost:3000"
 
 const express = require('express');
