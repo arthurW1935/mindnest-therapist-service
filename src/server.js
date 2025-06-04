@@ -1,3 +1,6 @@
+const PROD_URL = "https://mindnest-frontend.vercel.app/"
+const LOCAL_URL = "http://localhost:3000"
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -34,8 +37,8 @@ app.use(helmet({
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.com'] 
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
+    ? [PROD_URL] 
+    : [LOCAL_URL],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -112,7 +115,7 @@ const startServer = async () => {
     // Start the server
     app.listen(PORT, () => {
       console.log(`🚀 Therapist Service running on port ${PORT}`);
-      console.log(`📍 Health check: http://localhost:${PORT}/health`);
+      console.log(`📍 Health check: :${PORT}/health`);
       console.log(`🌐 Environment: ${process.env.NODE_ENV}`);
     });
   } catch (error) {
