@@ -14,6 +14,7 @@ router.post('/create', validate(createTherapistSchema), TherapistController.crea
 // Public search and discovery routes
 router.get('/search', TherapistController.searchTherapists);
 router.get('/public/:id', TherapistController.getPublicTherapistProfile);
+router.get('/public/auth/:id', TherapistController.getPublicTherapistProfileByAuthId);
 router.get('/specializations', TherapistController.getSpecializations);
 router.get('/approaches', TherapistController.getApproaches);
 

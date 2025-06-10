@@ -212,6 +212,58 @@ class TherapistController {
     }
   }
 
+  static async getPublicTherapistProfileByAuthId(req, res) {
+    try {
+      const therapistId = parseInt(req.params.id);
+      const therapist = await Therapist.findByAuthUserId(therapistId);
+
+      if (!therapist || !therapist.is_verified) {
+        return res.status(404).json({
+          success: false,
+          message: 'Therapist not found or not verified'
+        });
+      }
+
+      // Get specializations and approaches
+      const specializations = await Therapist.getSpecializations(therapist.id);
+      const approaches = await Therapist.getApproaches(therapist.id);
+
+      // Return only public information
+      res.json({
+        success: true,
+        data: {
+          therapist: {
+            id: therapist.id,
+            first_name: therapist.first_name,
+            last_name: therapist.last_name,
+            title: therapist.title,
+            bio: therapist.bio,
+            years_experience: therapist.years_experience,
+            education: therapist.education,
+            certifications: therapist.certifications,
+            languages_spoken: therapist.languages_spoken,
+            session_rate: therapist.session_rate,
+            currency: therapist.currency,
+            timezone: therapist.timezone,
+            average_rating: therapist.average_rating,
+            review_count: therapist.review_count,
+            profile_picture_url: therapist.profile_picture_url || 
+              `https://ui-avatars.com/api/?name=${encodeURIComponent((therapist.first_name || '') + ' ' + (therapist.last_name || '')).trim() || 'Therapist'}&size=64&background=10B981&color=ffffff`,
+            specializations,
+            approaches,
+            is_verified: therapist.is_verified
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error getting public therapist profile:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to get therapist profile'
+      });
+    }
+  }
+
   // Search therapists (public endpoint)
   static async searchTherapists(req, res) {
     try {
